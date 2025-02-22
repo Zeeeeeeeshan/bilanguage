@@ -5,9 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "./", // Ensures proper asset loading on Vercel
+  base: "/", // Fix for proper asset loading on Vercel
   server: {
-    host: true, // Fixes "::" issue and makes it accessible on LAN
     port: 8080,
     open: true, // Auto-opens browser on local dev
   },
@@ -22,8 +21,9 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
-    sourcemap: true, // Helps with debugging on Vercel
+    sourcemap: true, // Helps debugging on Vercel
     target: "esnext",
-    assetsDir: "assets", // Ensures static files are in the correct folder
+    assetsDir: "", // Let Vite handle assets properly
+    minify: "esbuild", // Optimize JS bundle size
   },
 }));
