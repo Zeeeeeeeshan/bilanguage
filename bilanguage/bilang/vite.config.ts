@@ -3,12 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/", // Fix for proper asset loading on Vercel
+  base: "/", // Use "/" for Netlify (no repo name needed)
   server: {
     port: 8080,
-    open: true, // Auto-opens browser on local dev
+    open: true,
   },
   plugins: [
     react(),
@@ -21,9 +20,10 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
-    sourcemap: true, // Helps debugging on Vercel
+    sourcemap: true,
     target: "esnext",
-    assetsDir: "", // Let Vite handle assets properly
-    minify: "esbuild", // Optimize JS bundle size
+    assetsDir: "",
+    minify: "esbuild",
   },
 }));
+
